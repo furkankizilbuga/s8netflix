@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/prop-types */
 import Profiles from "../components/Profile.jsx/Profiles";
 import styled from "styled-components";

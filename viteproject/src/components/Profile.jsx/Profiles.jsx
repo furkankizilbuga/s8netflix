@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { profilesData } from "../../profilesData";
 import styled from "styled-components";

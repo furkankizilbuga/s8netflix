@@ -4,6 +4,8 @@ import Login from './page/Login'
 import Welcome from './page/Welcome'
 import Home from './page/Home'
 import { useState } from 'react'
+import First from './page/First'
+/* import Header from './components/Header' */
 
 function App() {
 
@@ -13,7 +15,7 @@ function App() {
     <>
       <Switch>
         <Route exact path="/">
-          <h1>Welcome to Netflix</h1>
+          <First />
         </Route>
         <Route exact path="/login">
           <Login />
@@ -22,7 +24,7 @@ function App() {
           <Welcome setActiveProfile={setActiveProfile} />
         </Route>
         <Route exact path="/home">
-          <Header activeProfile={activeProfile} />
+          {/* <Header activeProfile={activeProfile} /> */}
           <Home activeProfile={activeProfile} />
         </Route>
       </Switch>

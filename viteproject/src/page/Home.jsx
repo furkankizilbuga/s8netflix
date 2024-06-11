@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { userSuggestionsData } from "../userSuggestions";
 import Suggestion from "../components/Suggestion/Suggestion";

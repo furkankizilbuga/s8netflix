@@ -1,9 +1,4 @@
-export const profilesData = {
-    "page":2,
-    "per_page":6,
-    "total":12,
-    "total_pages":2,
-    "data":
+export const profilesData =  
     [
         {
             "id":7,
@@ -29,8 +24,4 @@ export const profilesData = {
             "id":12,
             "name":"Rachel",
             "avatar":"https://reqres.in/img/faces/12-image.jpg"}
-    ],
-    "support":
-    {
-        "url":"https://reqres.in/#support-heading",
-        "text":"To keep ReqRes free, contributions towards server costs are appreciated!"}}
+    ]

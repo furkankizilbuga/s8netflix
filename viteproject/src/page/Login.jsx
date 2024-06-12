@@ -145,21 +145,21 @@ export default function Login() {
                 <Description>Just a few more steps and you're done!</Description>
                 <Row>
                     <Label htmlFor="email" >Email:</Label>
-                    <Input onChange={emailHandler} id="email" name="email" placeholder="Add an email" value={formData.email} />
+                    <Input data-cy="input-email" onChange={emailHandler} id="email" name="email" placeholder="Add an email" value={formData.email} />
                     {errors.email && <ErrorMessage>{errorMessages.email}</ErrorMessage>}
                 </Row>
                 <Row>
                     <Label htmlFor="password" >Password:</Label>
-                    <Input onChange={passwordHandler} id="password" name="password" type="password" placeholder="Add a password" value={formData.password} />
+                    <Input data-cy="input-password" onChange={passwordHandler} id="password" name="password" type="password" placeholder="Add a password" value={formData.password} />
                     {errors.password && <ErrorMessage>{errorMessages.password}</ErrorMessage>}
                 </Row>
                 <Row>
-                    <Input className="inline-input" onChange={termsHandler} type="checkbox" id="terms" name="terms" checked={formData.terms} />
+                    <Input data-cy="input-terms" className="inline-input" onChange={termsHandler} type="checkbox" id="terms" name="terms" checked={formData.terms} />
                     <Label htmlFor="terms" >Please accept the terms required.</Label>
                     {errors.terms && <ErrorMessage>{errorMessages.terms}</ErrorMessage>}
                 </Row>
                 <Row>
-                    <Button disabled={!isValid} >Login</Button>
+                    <Button data-cy="submit-login-form" disabled={!isValid} >Login</Button>
                 </Row>               
             </Form>
         )

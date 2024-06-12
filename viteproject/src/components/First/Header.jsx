@@ -6,42 +6,43 @@ export default function Header() {
         display: flex;
         justify-content: space-around;
         align-items: center;
-        border: 1px lime solid;
         width: 100vw;
         height: 5vw;
-        padding-top: .5rem;
-        padding-bottom: 1.5rem;
+        padding-bottom: 1.1vw;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.767) 100%);
     `
-    const Button = styled.div`
+    const Button = styled.button`
         background: red;
         font-weight: bold;
         color: white;
-        padding: .3rem 1rem;
-        padding-bottom: .4rem;
+        padding: .48vw .8vw;
         width: 100%;
         max-width: 200px;
         text-align: center;
-        font-size: 0.875rem;
+        font-size: 0.75vw;
         border-radius: 4px;
+        cursor: pointer;
+        border: none;
     `
     const Dropdown = styled.select`
         background: rgba(0, 0, 0, 0);
         color: white;
-        font-size: 1rem;
-        padding: .3rem 1.2rem;
+        font-size: .85vw;
+        padding: .3vw 1.2vw;
         border-radius: 4px;
     `
     const RightHeader = styled.div`
         display: flex;
         align-items: center;
-        gap: 1.5rem;
+        gap: 1.4vw;
     `
 
     const Baslik = styled.h1`
         color: red;
-        font-size: 2.8rem;
-        margin: 0;
+        font-size: 2.3vw;
         padding: 0;
+        cursor: default;
+
     `
 
     return(

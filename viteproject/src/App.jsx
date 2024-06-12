@@ -10,12 +10,13 @@ import First from './page/First'
 function App() {
 
   const [activeProfile, setActiveProfile] = useState(null);
+  const [startEmail, setStartEmail] = useState("");
 
   return (
     <>
       <Switch>
         <Route exact path="/">
-          <First />
+          <First startEmail={startEmail} setStartEmail={setStartEmail} />
         </Route>
         <Route exact path="/login">
           <Login />

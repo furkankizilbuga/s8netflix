@@ -8,6 +8,7 @@ export default function Suggestion(props)
  {
     const Title = styled.h2`
         color: white;
+        text-align: left;
     `
 
     const Card = styled.div`
@@ -19,7 +20,7 @@ export default function Suggestion(props)
     const [movies, setMovies] = useState([])
 
     useEffect(() => {
-        axios.get("https://movies-api14.p.rapidapi.com/" + category, {
+        axios.get("https://movies-api14.p.rapidapi.com/" + suggestion.category, {
             headers: {
                 "x-rapidapi-key": "ce04038e2msh104054e193ec289p18cdf9jsnb6a4a44d19e9",
                 "x-rapidapi-host": "movies-api14.p.rapidapi.com"

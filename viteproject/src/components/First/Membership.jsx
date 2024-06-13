@@ -6,6 +6,7 @@ import styled from "styled-components"
 const Form = styled.form`
     text-align: center;
     padding-top: 6vw;
+    margin-bottom: 9vw;
 `
 const Title = styled.h1`
     color: white;
@@ -73,15 +74,12 @@ const SubInput = styled.div`
 `
 
 export default function Membership(props) {
-
-    //Get Started'a tıklandığında input'u 
-    //Login formuna aktarıp formData.email olarak tanımlayacak.
     
     const history = useHistory();
-
-    const { startEmail, setStartEmail, setFormData, formData } = props;
-
     const [inValid, setInValid] = useState(false);
+
+    const { startEmail, setFormData, formData, setStartEmail } = props;
+
 
     const validateEmail = (email) => {
         return String(email)
@@ -100,6 +98,7 @@ export default function Membership(props) {
         if(validateEmail(startEmail)){
             setFormData({...formData, ["email"]: startEmail})
             history.push("/login")
+            setStartEmail("")
             
         }
         

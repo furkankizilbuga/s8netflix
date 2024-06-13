@@ -56,8 +56,8 @@ export default function Header() {
             <Baslik>NETFLIX</Baslik>
             <RightHeader>
                 <Dropdown name="language" id="language">
-                    <option style={{color: "black"}} value="türkçe">Türkçe</option>
                     <option style={{color: "black"}} value="english">English</option>
+                    <option style={{color: "black"}} value="türkçe">Türkçe</option>
                 </Dropdown>
                 <Button onClick={buttonHandler}>Sign In</Button>
             </RightHeader>

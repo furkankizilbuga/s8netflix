@@ -1,6 +1,9 @@
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 import styled from "styled-components"
 
 export default function Header() {
+
+    const history = useHistory();
 
     const Main = styled.header`
         display: flex;
@@ -44,6 +47,9 @@ export default function Header() {
         cursor: default;
 
     `
+    const buttonHandler = () => {
+        history.push("/login")
+    }
 
     return(
         <Main>
@@ -53,7 +59,7 @@ export default function Header() {
                     <option style={{color: "black"}} value="türkçe">Türkçe</option>
                     <option style={{color: "black"}} value="english">English</option>
                 </Dropdown>
-                <Button>Sign In</Button>
+                <Button onClick={buttonHandler}>Sign In</Button>
             </RightHeader>
         </Main>
     )

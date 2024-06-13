@@ -3,11 +3,7 @@ import Header from "../components/First/Header";
 import styled from "styled-components"
 import Membership from "../components/First/Membership";
 
-export default function First(props) {
-
-    const { setStartEmail, startEmail } = props;
-
-    const Background = styled.div`
+const Background = styled.div`
         display: flex;
         justify-content: space-around;
         width: 100vw;
@@ -19,11 +15,17 @@ export default function First(props) {
         
     `
 
+export default function First(props) {
+
+    const { setStartEmail, startEmail, setFormData, formData } = props;
+
+    
+
     return (
         <Background>
             <Column>
                 <Header />
-                <Membership setStartEmail={setStartEmail} startEmail={startEmail} />
+                <Membership formData={formData} setFormData={setFormData} setStartEmail={setStartEmail} startEmail={startEmail} />
             </Column>
         </Background>  
     )

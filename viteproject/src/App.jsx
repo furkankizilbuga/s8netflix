@@ -1,4 +1,4 @@
-import { Route, Switch } from 'react-router-dom/cjs/react-router-dom.min'
+import { Route, Switch } from 'react-router-dom'
 import './App.css'
 import Login from './page/Login'
 import Welcome from './page/Welcome'
@@ -9,20 +9,27 @@ import First from './page/First'
 
 function App() {
 
+  const initialFormData = {
+    email: "",
+    password: "",
+    terms: false
+}
+
   const [activeProfile, setActiveProfile] = useState(null);
   const [startEmail, setStartEmail] = useState("");
+  const [formData, setFormData] = useState(initialFormData);
 
   return (
     <>
       <Switch>
         <Route exact path="/">
-          <First startEmail={startEmail} setStartEmail={setStartEmail} />
+          <First startEmail={startEmail} setStartEmail={setStartEmail} formData={formData} setFormData={setFormData} />
         </Route>
         <Route exact path="/login">
-          <Login />
+          <Login formData={formData} setFormData={setFormData} initialFormData={initialFormData} />
         </Route>
         <Route exact path="/welcome">
-          <Welcome setActiveProfile={setActiveProfile} />
+          <Welcome setActiveProfile={setActiveProfile}  />
         </Route>
         <Route exact path="/home">
           {/* <Header activeProfile={activeProfile} /> */}

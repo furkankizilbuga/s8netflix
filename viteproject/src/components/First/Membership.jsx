@@ -1,4 +1,6 @@
 /* eslint-disable react/prop-types */
+import { useState } from "react"
+import { useHistory } from "react-router-dom"
 import styled from "styled-components"
 
 const Form = styled.form`
@@ -22,16 +24,21 @@ const Label = styled.label`
 
 const Input = styled.input`
     background: #00000075;
-    padding: .8vw;
+    padding: 1vw;
     padding-right: 10vw;
     padding-left: .8vw;
     border-radius: 5px;
     color: white;
+    border: 1px solid rgb(90, 90, 90);
+    width: 44.5%;
+    
 
     &::placeholder {
         color: #b4b4b4;
         font-size: .8vw;
     }
+
+    
 `
 
 const Button = styled.button`
@@ -39,26 +46,42 @@ const Button = styled.button`
     font-size: 1.2vw;
     background: red;
     display: inline-block;
-    padding: 0.6vw 1.4vw;
-    border-radius: 5px;
+    padding: 0.7vw 1.5vw;
+    border-radius: 4px;
     color: white;
     cursor: pointer;
     border: none;
+    max-height: 3vw;
 `
 
-const InputContainer = styled.form`
+const InputContainer = styled.div`
     display: flex;
     justify-content: center;
     gap: 8px;
     margin-top: .7vw;
 `
 
+const FormFeedback = styled.p`
+    color: red;
+    padding-left: 10px;
+`
+
+const SubInput = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+`
+
 export default function Membership(props) {
 
     //Get Started'a tıklandığında input'u 
     //Login formuna aktarıp formData.email olarak tanımlayacak.
+    
+    const history = useHistory();
 
-    const { startEmail, setStartEmail } = props;
+    const { startEmail, setStartEmail, setFormData, formData } = props;
+
+    const [inValid, setInValid] = useState(false);
 
     const validateEmail = (email) => {
         return String(email)
@@ -69,14 +92,18 @@ export default function Membership(props) {
       };
 
     const emailHandler = (event) => {
-        if(validateEmail(event.target.value))
         setStartEmail(event.target.value)
-        //valid değil ise hata mesajı 
     }
 
     const submitHandler = (event) => {
         event.preventDefault()
+        if(validateEmail(startEmail)){
+            setFormData({...formData, ["email"]: startEmail})
+            history.push("/login")
+            
+        }
         
+        else setInValid(true)
     }
 
 
@@ -86,9 +113,13 @@ export default function Membership(props) {
             <Description>Watch anywhere. Cancel anytime.</Description>
             <Label>Ready to watch? Enter your mail to create or restart your membership.</Label><br/>
             <InputContainer>
+            <SubInput>
                 <Input onChange={emailHandler} value={startEmail} placeholder="Email address" />
+                {inValid && <FormFeedback>Please enter a valid email.</FormFeedback>}
+            </SubInput>
                 <Button>Get Started {">"}</Button>
             </InputContainer>
+            
         </Form>
     )
 }

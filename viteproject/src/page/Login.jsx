@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-unescaped-entities */
 import axios from "axios";
@@ -51,21 +52,16 @@ const ErrorMessage = styled.p`
 `
 
 
-const initialFormData = {
-    email: "",
-    password: "",
-    terms: false
-}
-
 const errorMessages = {
     email: "Geçerli bir email adresi giriniz!",
     password: "Password alanına strong password giriniz!",
     terms: "Devam etmeden önce anlaşma şartlarını kabul ediniz!"
 }
 
-export default function Login() {
+export default function Login(props) {
 
-    const [formData, setFormData] = useState(initialFormData);
+    const { formData, setFormData, initialFormData } = props;
+
     const [errors, setErrors] = useState({
         email: false,
         password: false,

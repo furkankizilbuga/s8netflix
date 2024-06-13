@@ -6,11 +6,13 @@ import { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
 import styled from "styled-components"
 
+
 const Form = styled.form`
     padding-top: 1.5rem;
 `
 const Label = styled.label`
     font-size: 1.1rem;
+    color: black;
 `
 const Input = styled.input`
     display: block;
@@ -30,19 +32,24 @@ const Button = styled.button`
     padding: 1rem;
     text-align: center;
     border-radius: .5rem;
+    border: none;
 `
 const Row = styled.div`
     margin-bottom: 1rem;
 `
 const Step = styled.p`
     font-size: .8em;
+    color: black;
 `
 const Description = styled.p`
     font-size: 1.1em;
+    color: black;
 `
 const Title = styled.p`
     font-size: 2rem;
     margin-top: .5rem;
+    color: black;
+    font-weight: bold;
 `
 const ErrorMessage = styled.p`
     padding: .5rem;
@@ -135,29 +142,31 @@ export default function Login(props) {
     }, [formData])
 
         return(
-            <Form onSubmit={submitHandler}>
-                <Step>STEP 1 OF 3</Step>
-                <Title>Login to Continue</Title>
-                <Description>Just a few more steps and you're done!</Description>
-                <Row>
-                    <Label htmlFor="email" >Email:</Label>
-                    <Input data-cy="input-email" onChange={emailHandler} id="email" name="email" placeholder="Add an email" value={formData.email} />
-                    {errors.email && <ErrorMessage>{errorMessages.email}</ErrorMessage>}
-                </Row>
-                <Row>
-                    <Label htmlFor="password" >Password:</Label>
-                    <Input data-cy="input-password" onChange={passwordHandler} id="password" name="password" type="password" placeholder="Add a password" value={formData.password} />
-                    {errors.password && <ErrorMessage>{errorMessages.password}</ErrorMessage>}
-                </Row>
-                <Row>
-                    <Input data-cy="input-terms" className="inline-input" onChange={termsHandler} type="checkbox" id="terms" name="terms" checked={formData.terms} />
-                    <Label htmlFor="terms" >Please accept the terms required.</Label>
-                    {errors.terms && <ErrorMessage>{errorMessages.terms}</ErrorMessage>}
-                </Row>
-                <Row>
-                    <Button data-cy="submit-login-form" disabled={!isValid} >Login</Button>
-                </Row>               
-            </Form>
+           
+                <Form onSubmit={submitHandler}>
+                    <Step>STEP 1 OF 3</Step>
+                    <Title>Login to Continue</Title>
+                    <Description>Just a few more steps and you're done!</Description>
+                    <Row>
+                        <Label htmlFor="email" >Email:</Label>
+                        <Input data-cy="input-email" onChange={emailHandler} id="email" name="email" placeholder="Add an email" value={formData.email} />
+                        {errors.email && <ErrorMessage>{errorMessages.email}</ErrorMessage>}
+                    </Row>
+                    <Row>
+                        <Label htmlFor="password" >Password:</Label>
+                        <Input data-cy="input-password" onChange={passwordHandler} id="password" name="password" type="password" placeholder="Add a password" value={formData.password} />
+                        {errors.password && <ErrorMessage>{errorMessages.password}</ErrorMessage>}
+                    </Row>
+                    <Row>
+                        <Input data-cy="input-terms" className="inline-input" onChange={termsHandler} type="checkbox" id="terms" name="terms" checked={formData.terms} />
+                        <Label htmlFor="terms" > Please accept the terms.</Label>
+                        {errors.terms && <ErrorMessage>{errorMessages.terms}</ErrorMessage>}
+                    </Row>
+                    <Row>
+                        <Button data-cy="submit-login-form" disabled={!isValid} >Login</Button>
+                    </Row>               
+                </Form>
+         
         )
     }
 

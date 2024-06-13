@@ -1,6 +1,6 @@
 import { Route, Switch } from 'react-router-dom'
 import './App.css'
-import Login from './page/Login'
+import LoginPage from './page/LoginPage'
 import Welcome from './page/Welcome'
 import Home from './page/Home'
 import { useState } from 'react'
@@ -26,7 +26,7 @@ function App() {
           <First formData={formData} setFormData={setFormData} startEmail={startEmail} setStartEmail={setStartEmail} />
         </Route>
         <Route exact path="/login">
-          <Login formData={formData} setFormData={setFormData} initialFormData={initialFormData} />
+          <LoginPage formData={formData} setFormData={setFormData} initialFormData={initialFormData} />
         </Route>
         <Route exact path="/welcome">
           <Welcome setActiveProfile={setActiveProfile}  />

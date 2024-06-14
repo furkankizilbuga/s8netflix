@@ -20,16 +20,16 @@ const Background = styled.div`
 
 export default function First(props) {
 
-    const { setFormData, formData, setStartEmail, startEmail } = props;
+    const { setFormData, formData } = props;
 
 
     return (
         <Background>
             <Column>
                 <Header />
-                <Membership setStartEmail={setStartEmail} startEmail={startEmail} formData={formData} setFormData={setFormData}  />
+                <Membership formData={formData} setFormData={setFormData}  />
                 <Introduction />
-                <FAQ setFormData={setFormData} formData={formData} setStartEmail={setStartEmail} startEmail={startEmail} />
+                <FAQ />
                 <Footer />
             </Column>
         </Background>  

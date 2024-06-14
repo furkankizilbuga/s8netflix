@@ -77,8 +77,9 @@ export default function Membership(props) {
     
     const history = useHistory();
     const [inValid, setInValid] = useState(false);
+    const [startEmail, setStartEmail] = useState("");
 
-    const { startEmail, setFormData, formData, setStartEmail } = props;
+    const { setFormData, formData,  } = props;
 
 
     const validateEmail = (email) => {

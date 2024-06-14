@@ -35,7 +35,7 @@ function Profile(props) {
     }
 
     return (
-        <Card onClick={activeProfileHandler}>
+        <Card data-cy="user-card" onClick={activeProfileHandler}>
             <Avatar src={profile.avatar} />
             <Name>{profile.name}</Name>
         </Card>

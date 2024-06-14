@@ -121,8 +121,8 @@ describe("welcome page tests", () => {
     cy.url().should("contain", "/welcome");
   })
 
-  it.skip("kullanıcıya tıklandığında /home sayfasına iletiyor", () => {
-    cy.get('[data-cy="user-card"]').click()
+  it("kullanıcıya tıklandığında /home sayfasına iletiyor", () => {
+    cy.get('[data-cy="user-card"]').first().click()
     cy.url().should("contain", "/home");
 
 
@@ -132,16 +132,25 @@ describe("welcome page tests", () => {
 
 })
 
-describe("welcome page tests", () => {
+describe("home page tests", () => {
 
   beforeEach(() => {
-    cy.visit("http://localhost:5173/home")
+    cy.visit("http://localhost:5173/")
+    cy.get('[data-cy="first-sign-in"]').click()
+    cy.url().should("contain", "/login");
+    cy.get('[data-cy="input-email"]').type("example@example.com")
+    cy.get('[data-cy="input-password"]').type("12345aA.")
+    cy.get('[data-cy="input-terms"]').check()
+    cy.get('[data-cy="submit-login-form"]').click()
+    cy.url().should("contain", "/welcome");
+    cy.get('[data-cy="user-card"]').first().click()
+    cy.url().should("contain", "/home");
     
   })
 
-  it.only("kullanıcıya tıklandığında /home sayfasına iletiyor", () => {
-    cy.get('[data-cy="user-card"]').click()
-    cy.url().should("contain", "/home");
+  it("fare avatara getirildiğinde userbar açılıyor", () => {
+    cy.get('[data-cy="user-panel"]').trigger('mouseenter')
+    cy.get('[data-cy="user-bar"]').should("be.visible")
 
 
   })

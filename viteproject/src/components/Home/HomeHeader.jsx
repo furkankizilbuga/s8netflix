@@ -70,7 +70,15 @@ const UserBar = styled.nav`
     position: absolute;
     padding: .8vw;
     margin-right: 30px;
+
+    &:hover {
+        display: block;
+    }
+
 `
+
+//
+
 const UserPanelContainer = styled.div`
     position: relative;
 `
@@ -139,9 +147,9 @@ export default function HomeHeader(props) {
                 <SearchButton><FontAwesomeIcon icon={faMagnifyingGlass} /></SearchButton>
                 <Kids>Kids</Kids>
                 <FontAwesomeIcon icon={faBell} />
-                <Avatar onMouseLeave={userBarLeave} onMouseEnter={userBarHandler} src={activeProfile.avatar} />
+                <Avatar data-cy="user-panel" onMouseLeave={userBarLeave} onMouseEnter={userBarHandler} src={activeProfile.avatar} />
             </UserPanel>
-            <UserBar panel={panel} onMouseLeave={userBarLeave} onMouseEnter={userBarHandler} >
+            <UserBar data-cy="user-bar" panel={panel} onMouseLeave={userBarLeave} onMouseEnter={userBarHandler} >
                 <Profile>
                     {rest.map(profile => {
                         return <ImgName onClick={() => profileChanger(profile.id)} key={profile.id}>

@@ -17,13 +17,12 @@ function App() {
 
   const [activeProfile, setActiveProfile] = useState(null);
   const [formData, setFormData] = useState(initialFormData);
-  const [startEmail, setStartEmail] = useState("");
 
   return (
     <>
       <Switch>
         <Route exact path="/">
-          <First formData={formData} setFormData={setFormData} startEmail={startEmail} setStartEmail={setStartEmail} />
+          <First formData={formData} setFormData={setFormData} />
         </Route>
         <Route exact path="/login">
           <LoginPage formData={formData} setFormData={setFormData} initialFormData={initialFormData} />

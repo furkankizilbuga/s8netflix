@@ -7,6 +7,8 @@ import Movies from "./Movies";
 
 export default function Suggestion(props)
  {
+
+
     const Title = styled.h2`
         color: white;
         text-align: left;
@@ -16,24 +18,24 @@ export default function Suggestion(props)
         padding: 1rem;
     `
 
-    const {suggestion} = props;
+    const {suggestion, activeProfile} = props;
 
     const [movies, setMovies] = useState([])
 
     useEffect(() => {
-        axios.get("https://movies-api14.p.rapidapi.com/" + suggestion.category, {
+        axios.get("https://moviesdb5.p.rapidapi.com/", {
             headers: {
-                "x-rapidapi-key": "ce04038e2msh104054e193ec289p18cdf9jsnb6a4a44d19e9",
-                "x-rapidapi-host": "movies-api14.p.rapidapi.com"
+                "x-rapidapi-key": "eb0661b9d1mshe0f643a2b3b4307p186962jsn2923ed33c99d",
+                "x-rapidapi-host": "moviesdb5.p.rapidapi.com"
             }
         })
         .then(response => {
-            setMovies(response.data.movies.slice(0, 6))
+            setMovies(response.data.slice(0, 6))
         })
         .catch(err => {
             console.warn(err)
         })
-    }, [])
+    }, [activeProfile])
 
 
 

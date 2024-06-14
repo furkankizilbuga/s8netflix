@@ -32,8 +32,7 @@ function App() {
           <Welcome setActiveProfile={setActiveProfile}  />
         </Route>
         <Route exact path="/home">
-          {/* <Header activeProfile={activeProfile} /> */}
-          <Home activeProfile={activeProfile} />
+          <Home setActiveProfile={setActiveProfile} activeProfile={activeProfile} />
         </Route>
       </Switch>
     </>

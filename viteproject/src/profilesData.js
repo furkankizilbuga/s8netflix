@@ -20,8 +20,5 @@ export const profilesData =
             "id":11,
             "name":"George",
             "avatar":"https://reqres.in/img/faces/11-image.jpg"},
-        {
-            "id":12,
-            "name":"Rachel",
-            "avatar":"https://reqres.in/img/faces/12-image.jpg"}
+        
     ]

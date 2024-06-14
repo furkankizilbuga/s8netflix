@@ -59,7 +59,7 @@ export default function Header() {
                     <option style={{color: "black"}} value="english">English</option>
                     <option style={{color: "black"}} value="türkçe">Türkçe</option>
                 </Dropdown>
-                <Button onClick={buttonHandler}>Sign In</Button>
+                <Button data-cy="first-sign-in" onClick={buttonHandler}>Sign In</Button>
             </RightHeader>
         </Main>
     )

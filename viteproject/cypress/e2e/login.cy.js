@@ -5,50 +5,147 @@ describe('sanity check', () => {
   })
 })
 
-describe("success", () => {
+describe("first page tests", () => {
 
   beforeEach(() => {
     cy.visit("http://localhost:5173/")
   })
 
-    it("opens the login page", () => {
-      //TODO
+    it("opens the first page", () => {  //DONE
+      cy.url().should("contain", "/");
+    })
+
+    it("sign in button leads to /login", () => {    //DONE
+      cy.get('[data-cy="first-sign-in"]').click()
       cy.url().should("contain", "/login");
     })
 
-    it("submits form", () => {
-      //TODO
-      cy.get('[data-cy]="input-email"').type("example@gmail.com")
-      cy.get('[data-cy]="input-password"').type("12345aA.")
-      cy.get('[data-cy]="input-terms"').check()
-      cy.get('[data-cy]="submit-login-form"').click()
-      cy.url().should("contain", "/home")
+    it("main input empty button throws error", () => {    //DONE
+      cy.get('[data-cy="first-email"]').clear()
+      cy.get('[data-cy="first-get-started"]').click()
+      cy.get('[data-cy="first-email-error"]').should("be.visible")
+      cy.url().should("contain", "/");
     })
 
-    it("default button disabled", () => {
-      cy.get('[data-cy]="submit-login-form"').should("be.disabled")
+    it("main input not valid button throws error", () => {    //DONE
+      cy.get('[data-cy="first-email"]').type("asd")
+      cy.get('[data-cy="first-get-started"]').click()
+      cy.get('[data-cy="first-email-error"]').should("be.visible")
+      cy.url().should("contain", "/");
+    })
+
+    it("main input valid, button leads to login with email", () => {     //DONE
+      cy.get('[data-cy="first-email"]').type("example@example.com")
+      cy.get('[data-cy="first-get-started"]').click()
+      cy.url().should("contain", "/login");
+      cy.get('[data-cy="input-email"]').should("have.value", "example@example.com")
     })
 
 })
 
 
-describe("fail", () => {
+describe("login page tests", () => {
 
   beforeEach(() => {
     cy.visit("http://localhost:5173/")
+    cy.get('[data-cy="first-sign-in"]').click()
+    cy.url().should("contain", "/login");
   })
 
-  it("all fail", () => {
-
-    //act
-    cy.get('[data-cy]="input-email"').type("example@gmail.com")
-    cy.get('[data-cy]="input-password"').type("123")
-    cy.get('[data-cy]="input-terms"').check()
-    cy.get('[data-cy]="input-terms"').uncheck()
-
-    //assert
-    cy.get() //errors lenghti 3 olmalı
-    cy.contains("Geçerli bir email adresi giriniz!").should("be.visible")
+  it("inputs empty button disabled", () => {    //DONE
+      cy.get('[data-cy="input-email"]').clear()
+      cy.get('[data-cy="input-password"]').clear()
+      cy.get('[data-cy="input-terms"]').uncheck()
+      cy.get('[data-cy="submit-login-form"]').should("be.disabled")
   })
+
+  it("only email empty button disabled", () => {   //DONE
+    cy.get('[data-cy="input-email"]').type("a")
+    cy.get('[data-cy="input-email"]').clear()
+    cy.get('[data-cy="input-email-error"]').should("be.visible")  
+    cy.get('[data-cy="input-password"]').type("12345aA.")
+    cy.get('[data-cy="input-terms"]').check()
+    cy.get('[data-cy="submit-login-form"]').should("be.disabled")
+  })
+
+  it("only password empty button disabled", () => {   //DONE
+    cy.get('[data-cy="input-email"]').type("example@example.com")
+    cy.get('[data-cy="input-password"]').type("12345aA.")
+    cy.get('[data-cy="input-password"]').clear()
+    cy.get('[data-cy="input-password-error"]', {withinSubject:null}).should("be.visible")
+    cy.get('[data-cy="input-terms"]').check()
+    cy.get('[data-cy="submit-login-form"]').should("be.disabled")
+  })
+
+  it("only terms invalid button disabled", () => {   //DONE
+    cy.get('[data-cy="input-email"]').type("example@example.com")
+    cy.get('[data-cy="input-password"]').type("12345aA.")
+    cy.get('[data-cy="input-terms"]').uncheck()
+    cy.get('[data-cy="submit-login-form"]').should("be.disabled")
+  })
+
+  it("email and password invalid", () => {    //DONE
+    cy.get('[data-cy="input-email"]').clear()
+    cy.get('[data-cy="input-password"]').clear()
+    cy.get('[data-cy="input-terms"]').check()
+    cy.get('[data-cy="submit-login-form"]').should("be.disabled")
+  })
+
+  it("email and terms invalid", () => {    //DONE
+    cy.get('[data-cy="input-email"]').clear()
+    cy.get('[data-cy="input-password"]').type("12345aA.")
+    cy.get('[data-cy="input-terms"]').uncheck()
+    cy.get('[data-cy="submit-login-form"]').should("be.disabled")
+  })
+
+  it("password and terms invalid", () => {    //DONE
+    cy.get('[data-cy="input-email"]').type("example@example.com")
+    cy.get('[data-cy="input-password"]').clear()
+    cy.get('[data-cy="input-terms"]').uncheck()
+    cy.get('[data-cy="submit-login-form"]').should("be.disabled")
+  })
+
+})
+
+
+describe("welcome page tests", () => {
+
+  beforeEach(() => {
+    cy.visit("http://localhost:5173/")
+    cy.get('[data-cy="first-sign-in"]').click()
+    cy.url().should("contain", "/login");
+    cy.get('[data-cy="input-email"]').type("example@example.com")
+    cy.get('[data-cy="input-password"]').type("12345aA.")
+    cy.get('[data-cy="input-terms"]').check()
+    cy.get('[data-cy="submit-login-form"]').click()
+    cy.url().should("contain", "/welcome");
+  })
+
+  it.skip("kullanıcıya tıklandığında /home sayfasına iletiyor", () => {
+    cy.get('[data-cy="user-card"]').click()
+    cy.url().should("contain", "/home");
+
+
+  })
+
+
+
+})
+
+describe("welcome page tests", () => {
+
+  beforeEach(() => {
+    cy.visit("http://localhost:5173/home")
+    
+  })
+
+  it.only("kullanıcıya tıklandığında /home sayfasına iletiyor", () => {
+    cy.get('[data-cy="user-card"]').click()
+    cy.url().should("contain", "/home");
+
+
+  })
+
+
 
 })

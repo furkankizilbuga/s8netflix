@@ -91,6 +91,7 @@ export default function Membership(props) {
 
     const emailHandler = (event) => {
         setStartEmail(event.target.value)
+        setInValid(false);
     }
 
     const submitHandler = (event) => {
@@ -113,10 +114,10 @@ export default function Membership(props) {
             <Label>Ready to watch? Enter your mail to create or restart your membership.</Label><br/>
             <InputContainer>
             <SubInput>
-                <Input onChange={emailHandler} value={startEmail} placeholder="Email address" />
-                {inValid && <FormFeedback>Please enter a valid email.</FormFeedback>}
+                <Input data-cy="first-email" onChange={emailHandler} value={startEmail} placeholder="Email address" />
+                {inValid && <FormFeedback data-cy="first-email-error">Please enter a valid email.</FormFeedback>}
             </SubInput>
-                <Button>Get Started {">"}</Button>
+                <Button data-cy="first-get-started">Get Started {">"}</Button>
             </InputContainer>
             
         </Form>

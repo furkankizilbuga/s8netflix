@@ -19,7 +19,7 @@ export default function Profiles(props) {
         
             <ProfilesContainer>
                 {profiles.map((profile) => {
-                    return <Profile key={profile.id} profile={profile} setActiveProfile={setActiveProfile} />
+                    return <Profile data-cy="user-card" key={profile.id} profile={profile} setActiveProfile={setActiveProfile} />
                 })}
             </ProfilesContainer>
         

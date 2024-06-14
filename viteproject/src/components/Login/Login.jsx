@@ -136,9 +136,9 @@ export default function Login(props) {
 
 
     useEffect(() => {
-        if(errors.email === false && errors.password === false && errors.terms === false) {
-            setIsValid(true)
-        } else setIsValid(false)
+        if(errors.email === true || errors.password === true || errors.terms === true) {
+            setIsValid(false)
+        } else setIsValid(true)
     }, [formData])
 
         return(
